@@ -7,12 +7,12 @@
     </head>
     <body>
         <?php  
-            $title = "Hello";
+            $list = array(12,10,"shehab",50,"<h1>hello</h1>","ali",400,500);    //array
+            echo $list[4];
+            $names = array("firstname" => 'shehab' , "lastname" => 'ahmed');    // associative array
+            echo $names['firstname'] . " " . $names['lastname'];
         ?>
         
-        <h1><?php
-            // echo function is used to output the php page in local server
-            echo $title 
-        ?></h1>
+    
     </body>
 </html>
