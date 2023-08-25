@@ -1,33 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
+<?php 
+    include "connection.php";
 
-    <?php
-    
-        function calculate() {
-            $number1 = 20;
-            $number2 = 20;
-            if($number1 == $number2) {
-                echo "num 1 equal num 2";
-            }elseif($number1 > $number2) {
-                echo "num 1 is greater than num 2";
-            }else {
-                echo "num 1 is less than num 2";
-            }
-        }
-        function sayhello() {
-            for($i=1; $i<=10; $i++) {
-               calculate();
-            }
-        }
-        sayhello();
-        
-    ?>
-        
-    </body>
-</html>
+function insertData() {
+        global $connection;
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        $query = "INSERT INTO users(username , password) VALUES ('$username' , '$password')";
+        $result = mysqli_query($connection , $query);    
+}  
+
+function callAllID() {
+    global $connection;
+    $call = "SELECT * FROM users";
+    $operation = mysqli_query($connection , $call);
+
+    while($row = mysqli_fetch_assoc($operation)) {
+        $id = $row['id'];
+        echo "<option value = '$id'>$id</option>";
+    }
+            
+}
+
+function updateData() {
+    global $connection;
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $id = $_POST['id'];
+    $update = "UPDATE users SET username = '$username' , password = '$password' WHERE id = $id";
+    $end = mysqli_query($connection , $update);
+}
+
+function deleteData() {
+    global $connection;
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $id = $_POST['id'];
+    $delete = "DELETE FROM users WHERE id = $id";
+    $finish = mysqli_query($connection , $delete);
+}
+?>
+
